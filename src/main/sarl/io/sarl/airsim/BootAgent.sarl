@@ -5,6 +5,7 @@ package io.sarl.airsim
 
 import io.sarl.core.Initialize
 import io.sarl.core.Lifecycle
+import io.sarl.core.Logging
 
 /** 
  * Agent in charge of starting the other agents (initial state)
@@ -13,12 +14,13 @@ import io.sarl.core.Lifecycle
  */
 @SuppressWarnings("discouraged_reference")
 agent BootAgent {
-	uses Lifecycle
+	uses Lifecycle,Logging
 	
 	/** The total number of agents to spawn */
-	val agentToSpawn = 10
+	val agentToSpawn = 4
 
 	on Initialize {
+		info("Booting System...")
 		// Run the drone spawning strategy
 		runSpawnStrategy()
 		

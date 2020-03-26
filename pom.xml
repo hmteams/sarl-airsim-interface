@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.sarl.airsim</groupId>
 	<artifactId>sarl-airsim-interface</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<properties>
 		<compiler.level>1.8</compiler.level>
-		<sarl.version>0.10.0-SNAPSHOT</sarl.version>
+		<sarl.version>0.11.0-SNAPSHOT</sarl.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
