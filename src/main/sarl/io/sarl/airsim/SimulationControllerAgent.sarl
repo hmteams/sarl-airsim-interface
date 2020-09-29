@@ -56,7 +56,7 @@ agent SimulationControllerAgent {
 	val simulationStepMs = 200.0f
 
 
-	val SERVER_IP = "131.170.26.250"
+	val SERVER_IP = "192.168.1.100"
     val SERVER_PORT = 41451 
 
 	// val pool = newLinkedList("S0", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9")

@@ -45,4 +45,9 @@ skill MockMultirotorControl implements MultirotorSimulationControlCapacity {
 	override moveToPosition(vehicleName : String, x : Float, y : Float, z : Float, velocity : Float) : Future<Void> {
 		//
 	}
+	
+	def hover(vehicleName : String) : Future<Void> {
+		//
+	}
+	
 }

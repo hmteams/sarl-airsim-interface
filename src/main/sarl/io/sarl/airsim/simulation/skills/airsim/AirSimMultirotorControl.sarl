@@ -54,6 +54,11 @@ skill AirSimMultirotorControl implements MultirotorSimulationControlCapacity {
 		}
 	}
 
+	override hover(vehicleName : String) : Future<Void> {
+		synchronized (this.rpcLibClient) {
+			rpcLibClient.hoverAsync(vehicleName)
+		}
+	}
 	override land(vehicleName : String) : Future<Void> {
 		synchronized (this.rpcLibClient) {
 			rpcLibClient.landAsync(defaultTimeout, vehicleName)		

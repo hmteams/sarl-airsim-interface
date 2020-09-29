@@ -25,6 +25,8 @@ capacity MultirotorSimulationControlCapacity {
 	 */
 	def takeOff(vehicleName : String) : Future<Void>
 
+	def hover(vehicleName : String) : Future<Void> 
+
 	/** 
 	 * Land order for the given vehicle
 	 * @param vehicleName the identifier of the vehicle
