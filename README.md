@@ -1,5 +1,7 @@
 # SARL AirSim interface
 
+![SARL Airsim multiagent simulation](https://i.imgur.com/JGREzTo.png "SARL Airsim multiagent simulation")
+
 Example of usage of the AirSim simulation environment with SARL agents.
 
 ## Principles
@@ -125,3 +127,17 @@ from real sensors. During this time, the agents won't be able to make a decision
 This can lead to inconsistency in the simulation results. That's why, it's better to use a fixed step simulation strategy where the simulation
 won't continue while the perceptions are retrieved. It's up to the agents or the SimulationControllerAgent to emulate the sensor lag if required.
 
+## Citation
+
+If you're using this repository in your research or in your work, please use the following for citations:
+
+    @misc{alombardSarlAirsim19,
+        author = {Alexandre Lombard},
+        title = {S{A}{R}{L} {A}ir{S}im interface},
+        year = {2019},
+        publisher = {GitHub},
+        journal = {GitHub repository},
+        howpublished = {\url{https://github.com/alexandrelombard/sarl-arisim-interface}}
+    }
+
+Thank you!
