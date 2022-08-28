@@ -1,0 +1,18 @@
+package io.sarl.airsim.perceptions.sim
+
+import java.util.List
+
+/** 
+ * Vehicle list perception (note: this is a simulation only perception)
+ * @author andre
+ * 
+ */
+event SimVehicleListPerception {
+	val vehicleList : List<String>
+
+	new(vehicleList : List<String>) {
+		this.vehicleList = vehicleList
+	}
+}
+
+event ListVehicles

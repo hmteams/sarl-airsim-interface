@@ -50,7 +50,7 @@ skill MockSimulationControl implements SimulationControlCapacity {
 		}
 	}
 
-	def simPrintLogMessage(message : String, messageParam : String, severity : Integer = 0) {
+	def simPrintLogMessage(message : String, messageParam : String, severity : Integer) {
 		info(message + " ; " + messageParam + " ; " + severity)
 	}
 

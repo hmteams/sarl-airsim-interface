@@ -6,6 +6,10 @@ package io.sarl.airsim
 import io.sarl.core.Initialize
 import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
+import io.sarl.lang.core.Address
+import io.sarl.airsim.perceptions.sim.ListVehicles
+import io.sarl.core.DefaultContextInteractions
+import io.sarl.airsim.perceptions.sim.SimVehicleListPerception
 
 /** 
  * Agent in charge of starting the other agents (initial state)
@@ -14,26 +18,41 @@ import io.sarl.core.Logging
  */
 @SuppressWarnings("discouraged_reference")
 agent BootAgent {
-	uses Lifecycle,Logging
+	uses Lifecycle, Logging, DefaultContextInteractions
 	
 	/** The total number of agents to spawn */
-	val agentToSpawn = 4
+	val agentToSpawn = 1 //4
 
 	on Initialize {
+
 		info("Booting System...")
 		// Run the drone spawning strategy
 		runSpawnStrategy()
 		
 		// Spawn the simulation controller agent
 		spawn(SimulationControllerAgent)
+		
+		Thread.sleep(2000)
+
+		emit(new ListVehicles)
+
 	}
 	
 	def runSpawnStrategy() {
+		
 		Thread.sleep(2000)
 		
 		for (var idx = 0; idx < agentToSpawn; idx++) {
 			spawn(DroneAgent)
 			Thread.sleep((1500 * Math.random()).intValue)
 		}
+
 	}
+	
+	on SimVehicleListPerception {
+		
+		info(occurrence.vehicleList)
+		
+	}
+
 }
