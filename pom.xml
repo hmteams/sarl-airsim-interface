@@ -20,8 +20,6 @@
 			<groupId>fr.utbm.airsim</groupId>
 			<artifactId>airsim-jvm-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
-			<scope>system</scope>
-    		<systemPath>${project.basedir}/src/localjar/airsim-jvm-api-1.0-SNAPSHOT.jar</systemPath>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.stampery/msgpack-rpc -->
 		<dependency>
