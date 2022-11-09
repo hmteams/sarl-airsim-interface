@@ -4,6 +4,16 @@
 
 Example of usage of the AirSim simulation environment with SARL agents.
 
+## Install
+
+This requires you have already installed `airsim-jvm-api`
+
+```sh
+mvn install
+```
+
+[GitHub workflow](.github/workflows/publish.yml)
+
 ## Principles
 
 The simulation is performed within AirSim (computation of the collision, of the perceptions, etc.) and
