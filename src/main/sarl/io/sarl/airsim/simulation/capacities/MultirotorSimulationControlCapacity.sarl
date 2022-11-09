@@ -3,6 +3,8 @@
  */
 package io.sarl.airsim.simulation.capacities
 
+import org.msgpack.rpc.Future
+
 /** 
  * Capacity to control a multirotor body in the simulation.
  * This capacity should be given to the simulation controller agent.
@@ -21,19 +23,21 @@ capacity MultirotorSimulationControlCapacity {
 	 * Take-off order for the given vehicle
 	 * @param vehicleName the identifier of the vehicle
 	 */
-	def takeOff(vehicleName : String)
+	def takeOff(vehicleName : String) : Future<Void>
+
+	def hover(vehicleName : String) : Future<Void> 
 
 	/** 
 	 * Land order for the given vehicle
 	 * @param vehicleName the identifier of the vehicle
 	 */
-	def land(vehicleName : String)
+	def land(vehicleName : String) : Future<Void>
 
 	/** 
 	 * Go-home order for the given vehicle
 	 * @param vehicleName the identifier of the vehicle
 	 */
-	def goHome(vehicleName : String)
+	def goHome(vehicleName : String) : Future<Void>
 
 	/** 
 	 * Move-by-velocity order for the given vehicle
@@ -43,7 +47,7 @@ capacity MultirotorSimulationControlCapacity {
 	 * @param vz the velocity along the z axis
 	 * @param duration the duration of the movement in seconds
 	 */
-	def moveByVelocity(vehicleName : String, vx : Float, vy : Float, vz : Float, duration : Float)
+	def moveByVelocity(vehicleName : String, vx : Float, vy : Float, vz : Float, duration : Float) : Future<Void>
 
 	/** 
 	 * Move-to-position order for the given vehicle
@@ -52,7 +56,7 @@ capacity MultirotorSimulationControlCapacity {
 	 * @param y the y position
 	 * @param z the z position
 	 */
-	def moveToPosition(vehicleName : String, x : Float, y : Float, z : Float, velocity: Float)
+	def moveToPosition(vehicleName : String, x : Float, y : Float, z : Float, velocity : Float) : Future<Void>
 
 	/** 
 	 * Rotate-by-yaw-rate order for the given vehicle
@@ -60,13 +64,13 @@ capacity MultirotorSimulationControlCapacity {
 	 * @param yawRate the yaw rate
 	 * @param duration the duration of the order in seconds
 	 */
-	def rotateByYawRate(vehicleName : String, yawRate : Float, duration : Float)
+	def rotateByYawRate(vehicleName : String, yawRate : Float, duration : Float) 
 
 	/** 
 	 * Rotate-to-yaw order for the given vehicle
 	 * @param vehicleName the identifier of the vehicle
 	 * @param yaw the target yaw angle
 	 */
-	def rotateToYaw(vehicleName: String, yaw : Float)
+	def rotateToYaw(vehicleName : String, yaw : Float) 
 	
 }

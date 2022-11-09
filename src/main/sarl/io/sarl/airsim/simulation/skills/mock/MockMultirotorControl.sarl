@@ -4,6 +4,7 @@
 package io.sarl.airsim.simulation.skills.mock
 
 import io.sarl.airsim.simulation.capacities.MultirotorSimulationControlCapacity
+import org.msgpack.rpc.Future
 
 /** 
  * Mock for the multirotor control implementing the corresponding capacity.
@@ -13,11 +14,11 @@ import io.sarl.airsim.simulation.capacities.MultirotorSimulationControlCapacity
  */
 skill MockMultirotorControl implements MultirotorSimulationControlCapacity {
 
-	override takeOff(vehicleName : String) {
+	override takeOff(vehicleName : String) : Future<Void> {
 		//
 	}
 
-	override land(vehicleName : String) {
+	override land(vehicleName : String) : Future<Void> {
 		//
 	}
 
@@ -29,11 +30,11 @@ skill MockMultirotorControl implements MultirotorSimulationControlCapacity {
 		//
 	}
 
-	override goHome(vehicleName : String) {
+	override goHome(vehicleName : String) : Future<Void> {
 		//
 	}
 
-	override moveByVelocity(vehicleName : String, vx : Float, vy : Float, vz : Float, duration : Float) {
+	override moveByVelocity(vehicleName : String, vx : Float, vy : Float, vz : Float, duration : Float) : Future<Void> {
 		//
 	}
 
@@ -41,7 +42,12 @@ skill MockMultirotorControl implements MultirotorSimulationControlCapacity {
 		//
 	}
 
-	override moveToPosition(vehicleName : String, x : Float, y : Float, z : Float, velocity : Float) {
+	override moveToPosition(vehicleName : String, x : Float, y : Float, z : Float, velocity : Float) : Future<Void> {
 		//
 	}
+	
+	def hover(vehicleName : String) : Future<Void> {
+		//
+	}
+	
 }

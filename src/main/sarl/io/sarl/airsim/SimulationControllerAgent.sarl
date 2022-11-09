@@ -34,6 +34,8 @@ import io.sarl.airsim.simulation.capacities.SimulationPerceptionCapacity
 import io.sarl.airsim.simulation.skills.airsim.AirSimSimulationPerception
 import io.sarl.airsim.simulation.capacities.MultirotorSimulationPerceptionCapacity
 import io.sarl.airsim.simulation.skills.airsim.AirSimMultirotorSimulationPerception
+import io.sarl.airsim.perceptions.sim.SimVehicleListPerception
+import io.sarl.airsim.perceptions.sim.ListVehicles
 
 /**
  * Agent in charge of controlling the simulation, transmitting the influences and
@@ -55,7 +57,12 @@ agent SimulationControllerAgent {
 	/** The simulation step */
 	val simulationStepMs = 200.0f
 
-	val pool = newLinkedList("S0", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9")
+
+	val SERVER_IP = "127.0.0.1" // "192.168.1.100"
+    val SERVER_PORT = 41451 
+
+	// val pool = newLinkedList("S0", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9")
+	val pool = newLinkedList("SimpleFlight"/*"Alpha", "Bravo", "Charly", "Delta"*/)
 	val affectationStrategy =
 			new FcfsFixedSizePoolAllocationStrategy([|
 				val pool = pool
@@ -72,15 +79,20 @@ agent SimulationControllerAgent {
 	
 	// Attributes used to access AirSim API
 	val loop = EventLoop.defaultEventLoop()
-	val rpcClient = new Client("127.0.0.1", 41451, loop)
+	val rpcClient = new Client(SERVER_IP, SERVER_PORT, loop)
 	val multirotorClient = rpcClient.proxy(typeof(MultirotorClientInterface))
 	
 	on Initialize {
+		info("Simulation Control Starting ...")
+		
 		// Install the simulation control capacities
-		setSkill(new AirSimSimulationControl, SimulationControlCapacity)
-		setSkill(new AirSimMultirotorControl, MultirotorSimulationControlCapacity)
-		setSkill(new AirSimSimulationPerception, SimulationPerceptionCapacity)
-		setSkill(new AirSimMultirotorSimulationPerception, MultirotorSimulationPerceptionCapacity)
+		setSkill(new AirSimSimulationControl(SERVER_IP, SERVER_PORT), SimulationControlCapacity)
+		setSkill(new AirSimMultirotorControl(SERVER_IP, SERVER_PORT), MultirotorSimulationControlCapacity)
+		setSkill(new AirSimSimulationPerception(SERVER_IP, SERVER_PORT), SimulationPerceptionCapacity)
+		setSkill(new AirSimMultirotorSimulationPerception(SERVER_IP, SERVER_PORT),
+			MultirotorSimulationPerceptionCapacity)
+		
+		info("Airsim Skills up...")
 		
 		// Standard scheduling according to the direct influence/reaction strategy (it would also work with Batched but forbidding
 		// influences from being applied immediately is not well-suited with real-time simulation)
@@ -154,6 +166,15 @@ agent SimulationControllerAgent {
 			body.moveByVelocity(occurrence.vx, occurrence.vy, occurrence.vz, occurrence.duration)
 		]
 		debug("MoveByVelocity (end)")
+	}
+	
+	on ListVehicles {
+		debug("ListVehicles (begin)")
+		val vehicles = listVehicles
+		influenceReactionStrategy.perceptionReceived(occurrence.source) [
+			emit(new SimVehicleListPerception(vehicles))[it == occurrence.source]
+		]
+		debug("ListVehicles (end)")
 	}
 	
 	/** Retrieve the perceptions for a single agent */

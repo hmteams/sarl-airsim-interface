@@ -6,6 +6,7 @@ package io.sarl.airsim.simulation.capacities
 import fr.utbm.airsim.api.Pose
 import fr.utbm.airsim.api.CollisionInfo
 import fr.utbm.airsim.api.KinematicsState
+import java.util.List
 
 /** 
  * The capacity to perceive the simulation state (not through sensors, but like an omniscient god) 
@@ -33,4 +34,11 @@ capacity SimulationPerceptionCapacity {
 	 * @return the kinematics state
 	 */
 	def simGetGroundTruthKinematics(vehicleName : String) : KinematicsState
+
+	/**
+	 * Gets the list of vehicles in the simulation
+	 * @return an array of the vehicles
+	 */
+	def listVehicles() : List<String>
+
 }
