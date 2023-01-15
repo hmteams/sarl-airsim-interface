@@ -27,6 +27,12 @@
 		    <artifactId>msgpack-rpc</artifactId>
 		    <version>0.7.1</version>
 		</dependency>
+		
+		<dependency> 
+			<groupId>org.eclipse.platform</groupId> 
+			<artifactId>org.eclipse.core.runtime</artifactId> 
+			<version>3.26.100</version> 
+		</dependency>
 		<!--<dependency>
 		   <groupId>org.msgpack</groupId>
 		   <artifactId>msgpack-core</artifactId>
