@@ -18,6 +18,18 @@ capacity MultirotorSimulationControlCapacity {
 	 * @param vehicleName the name of the vehicle to control 
 	 */
 	def enableControl(vehicleName : String)
+
+	/** 
+	 * A method to call in order check whether API control is enabled
+	 * @param vehicleName the name of the vehicle to control 
+	 */
+	def isApiControlEnabled(vehicleName : String) : Boolean
+
+	/** 
+	 * A method to arm the vehicle
+	 * @param vehicleName the name of the vehicle to arm 
+	 */
+	def arm(vehicleName : String)
 	
 	/**
 	 * Take-off order for the given vehicle

@@ -50,4 +50,12 @@ skill MockMultirotorControl implements MultirotorSimulationControlCapacity {
 		//
 	}
 	
+	override arm(vehicleName : String) {
+		//
+	}
+	
+	def isApiControlEnabled(vehicleName : String) : Boolean {
+		//
+	}
+	
 }

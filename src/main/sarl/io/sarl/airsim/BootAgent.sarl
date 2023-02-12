@@ -43,6 +43,7 @@ agent BootAgent {
 		Thread.sleep(2000)
 		
 		for (var idx = 0; idx < agentToSpawn; idx++) {
+			info("Spawning agent")
 			spawn(DroneAgent)
 			Thread.sleep((1500 * Math.random()).intValue)
 		}

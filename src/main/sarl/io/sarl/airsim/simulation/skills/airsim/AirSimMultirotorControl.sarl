@@ -23,7 +23,7 @@ skill AirSimMultirotorControl implements MultirotorSimulationControlCapacity {
 	val rpcLibClient : MultirotorClientInterface
 
 	// TODO Allow defining this parameter
-	val defaultTimeout = 5.0f
+	val defaultTimeout = 1000f//5.0f
 
 	new() {
 		this("127.0.0.1", 41451)
@@ -41,10 +41,22 @@ skill AirSimMultirotorControl implements MultirotorSimulationControlCapacity {
 	def uninstall {
 		//
 	}
+
+	override arm(vehicleName : String) {
+		synchronized (this.rpcLibClient) {
+			rpcLibClient.armDisarm(true, vehicleName)
+		}
+	}
 	
 	override enableControl(vehicleName : String) {
 		synchronized (this.rpcLibClient) {
 			rpcLibClient.enableApiControl(true, vehicleName)
+		}
+	}
+	
+	override isApiControlEnabled(vehicleName : String) : Boolean {
+		synchronized (this.rpcLibClient) {
+			rpcLibClient.isApiControlEnabled(vehicleName)
 		}
 	}
 
@@ -59,6 +71,7 @@ skill AirSimMultirotorControl implements MultirotorSimulationControlCapacity {
 			rpcLibClient.hoverAsync(vehicleName)
 		}
 	}
+	
 	override land(vehicleName : String) : Future<Void> {
 		synchronized (this.rpcLibClient) {
 			rpcLibClient.landAsync(defaultTimeout, vehicleName)		
@@ -96,4 +109,5 @@ skill AirSimMultirotorControl implements MultirotorSimulationControlCapacity {
 				vehicleName)
 		}
 	}
+	
 }
