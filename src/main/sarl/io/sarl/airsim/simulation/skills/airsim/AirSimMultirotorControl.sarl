@@ -23,7 +23,7 @@ skill AirSimMultirotorControl implements MultirotorSimulationControlCapacity {
 	val rpcLibClient : MultirotorClientInterface
 
 	// TODO Allow defining this parameter
-	val defaultTimeout = 1000f//5.0f
+	val defaultTimeout = 5.0f
 
 	new() {
 		this("127.0.0.1", 41451)

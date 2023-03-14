@@ -42,25 +42,33 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>${compiler.level}</source>
-					<target>${compiler.level}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>io.sarl.maven</groupId>
 				<artifactId>sarl-maven-plugin</artifactId>
 				<version>${sarl.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<source>${compiler.level}</source>
-					<target>${compiler.level}</target>
+					<source>${target.jdk.version}</source>
+					<target>${target.jdk.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.platform</groupId>
+						<artifactId>org.eclipse.equinox.common</artifactId>
+						<version>3.14.100</version>
+					</dependency>
+		            <dependency>
+		            	<groupId>io.sarl.maven</groupId>
+			            <artifactId>io.sarl.maven.sdk</artifactId>
+			            <version>0.12.0</version>
+			            <exclusions>
+			            	<exclusion>
+			                	<groupId>org.eclipse.platform</groupId>
+			                	<artifactId>org.eclipse.equinox.common</artifactId>
+			              	</exclusion>
+			            </exclusions>
+		          	</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
